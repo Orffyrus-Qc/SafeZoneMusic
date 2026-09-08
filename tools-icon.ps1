@@ -1,3 +1,23 @@
+<#
+    Renders the SafeZoneMusic icon. Deterministic: the same seed always produces the
+    same image, so a rebuild reproduces the shipped icon byte for byte.
+
+        .	ools-icon.ps1                      the shipped icon (seed 0)
+        .	ools-icon.ps1 -Seed 4              a different wear pattern, same design
+        .	ools-icon.ps1 -Seed 4 -Out C:	mp  write somewhere else
+
+    Only the weathering changes with the seed: scratches, grain and corrosion. The
+    boombox, colours and layout are fixed.
+#>
+param(
+    [int]$Seed = 0,
+    [string]$Out = "W:\SafeZoneMusic",
+    [string]$Name = "icon"
+)
+
+$grainSeed = if ($Seed -eq 0) { 20260908 } else { $Seed }
+$wearSeed  = if ($Seed -eq 0) { 77 }       else { $Seed + 77 }
+
 Add-Type -AssemblyName System.Drawing
 $S = 512
 $bmp = New-Object System.Drawing.Bitmap $S, $S
@@ -62,7 +82,7 @@ $g.DrawPath((New-Object System.Drawing.Pen (Argb 60 232 190 150), 2), $inner)
 
 # corrosion on the body -------------------------------------------------------
 $g.SetClip($body)
-$r2 = New-Object System.Random 77
+$r2 = New-Object System.Random $wearSeed
 for ($i = 0; $i -lt 220; $i++) {
     $x = $r2.Next(76, 436); $y = $r2.Next(196, 386)
     $d = $r2.Next(4, 26); $a = $r2.Next(6, 30)
@@ -117,7 +137,7 @@ $vb.SurroundColors = @((Argb 135 0 0 0))
 $g.FillRectangle($vb, 0, 0, $S, $S)
 
 # grain -------------------------------------------------------------------------
-$rand = New-Object System.Random 20260908
+$rand = New-Object System.Random $grainSeed
 for ($i = 0; $i -lt 70; $i++) {
     $x = $rand.Next(0,$S); $y = $rand.Next(0,$S); $len = $rand.Next(18,120); $a = $rand.Next(5,16)
     $p = New-Object System.Drawing.Pen (Argb $a 220 200 180), 1
@@ -129,14 +149,14 @@ for ($i = 0; $i -lt 1100; $i++) {
     $g.FillRectangle($b, $x, $y, 2, 2); $b.Dispose()
 }
 
-$bmp.Save("W:\SafeZoneMusic\icon.png", [System.Drawing.Imaging.ImageFormat]::Png)
+$bmp.Save("$Out\$Name.png", [System.Drawing.Imaging.ImageFormat]::Png)
 foreach ($size in @(256, 128)) {
     $small = New-Object System.Drawing.Bitmap $size, $size
     $sg = [System.Drawing.Graphics]::FromImage($small)
     $sg.InterpolationMode = 'HighQualityBicubic'
     $sg.DrawImage($bmp, 0, 0, $size, $size)
-    $small.Save("W:\SafeZoneMusic\icon-$size.png", [System.Drawing.Imaging.ImageFormat]::Png)
+    $small.Save("$Out\$Name-$size.png", [System.Drawing.Imaging.ImageFormat]::Png)
     $sg.Dispose(); $small.Dispose()
 }
 $g.Dispose(); $bmp.Dispose()
-Write-Output "icon rendered at 512, 256 and 128"
+Write-Output "rendered $Name at 512, 256 and 128 (grain $grainSeed, wear $wearSeed)"
