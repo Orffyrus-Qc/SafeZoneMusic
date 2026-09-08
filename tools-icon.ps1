@@ -1,14 +1,14 @@
 <#
-    Renders the SafeZoneMusic icon. Deterministic: the same seed always produces the
-    same image, so a rebuild reproduces the shipped icon byte for byte.
+    Renders the SafeZoneMusic icon with System.Drawing. Deterministic: the same seed
+    always produces the same image, so a rebuild reproduces the shipped icon exactly.
 
-        .	ools-icon.ps1                      the shipped icon (seed 0)
-        .	ools-icon.ps1 -Seed 4              a different wear pattern, same design
-        .	ools-icon.ps1 -Seed 4 -Out C:	mp  write somewhere else
-        .	ools-icon.ps1 -Count 8 -Out C:	mp  eight variations to choose between
+      tools-icon.ps1                       the shipped icon (seed 0)
+      tools-icon.ps1 -Seed 4               a different wear pattern, same design
+      tools-icon.ps1 -Seed 4 -Out C:/tmp   write somewhere else
+      tools-icon.ps1 -Count 8 -Out C:/tmp  eight variations to compare
 
-    Only the weathering changes with the seed: scratches, grain and corrosion. The
-    boombox, colours and layout are fixed.
+    Only the weathering changes with the seed: scratches, grain and corrosion.
+    The boombox, palette and layout are fixed.
 #>
 param(
     [int]$Seed = 0,
