@@ -71,16 +71,14 @@ Placement is logged per zone on load, so it can be checked without going to look
 
 ## Commands
 
-| Command | Description |
-| --- | --- |
-| /szmusic | What is playing, distance to the boombox, and its state |
-| /szmusic move | Move the nearest zone's boombox to where you stand, and keep it |
-| /szmusic reset | Return that zone to automatic placement |
-| /szmusic restart | Stop and restart the boombox, forcing clients to reopen the stream |
-| szmusic.status | Zones, track counts, listeners, centres and stream URLs |
-| szmusic.skip &lt;zone or all&gt; | Skip the current track |
-| szmusic.reload | Re-read the config, the folders and the map |
-| szmusic.stations | Print the published station names and URLs |
+- /szmusic - what is playing, how far away the boombox is, and its state
+- /szmusic move - move the nearest zone's boombox to where you stand, and keep it there
+- /szmusic reset - return that zone to automatic placement
+- /szmusic restart - stop and restart the boombox, forcing clients to reopen the stream
+- szmusic.status - zones, track counts, listeners, centres and stream URLs
+- szmusic.skip [zone or all] - skip the current track
+- szmusic.reload - re-read the config, the folders and the map
+- szmusic.stations - print the published station names and URLs
 
 Permission: safezonemusic.admin
 
