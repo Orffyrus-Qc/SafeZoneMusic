@@ -6,15 +6,19 @@ Paste-ready fields for the umod.org plugin form.
 **Author:** Orffyrus
 **Version:** 1.9.1
 **Source:** https://github.com/Orffyrus-Qc/SafeZoneMusic
-**Icon:** icon-256.png (256x256 PNG)
-**Upload:** oxide/plugins/SafeZoneMusic.cs
+**Icon:** icon-256.png (256x256 PNG, 24-bit RGB with no alpha)
+**Upload:** oxide/plugins/SafeZoneMusic.cs (the single .cs file, not the zip)
+**Sync on:** release, not push - the repo gets docs and icon commits that are not code changes
+**Dependencies:** none
+**Licence:** MIT for the code; the songs are the author's own
 
-## Short description
+## Short description (81 chars, limit 100)
 
-Plays your own mp3 files at every safe zone, and publishes them as radio stations
-for boomboxes, jukeboxes and vehicle radios.
+Streams your own mp3s to every safe zone and to any boombox, jukebox or car radio
 
 ## Description
+
+**Includes 30 Rust-inspired songs:** https://suno.com/@orffyrus
 
 A Rust client can only play audio that ships inside the game, with one exception: the
 BoomBox stream system, where the client opens an HTTP connection and decodes the audio
@@ -68,4 +72,6 @@ desktop player handles, and Rust renders it as static:
 
 ## Tags
 
-rust, oxide, music, audio, boombox, radio, safezone, monument, streaming
+rust, oxide, music, audio, boombox, radio, jukebox, safezone, monument, streaming, mp3, ambience
+
+If only a few are allowed: music, boombox, radio, safezone, audio
