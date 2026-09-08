@@ -3,3 +3,7 @@
 oxide/logs/
 logs/
 
+
+# Stray folders from the file explorer
+New folder/
+New folder */
