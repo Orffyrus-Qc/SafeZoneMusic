@@ -1,5 +1,7 @@
 <#
-    Renders the SafeZoneMusic icon with System.Drawing. Deterministic: the same seed
+    Renders the SafeZoneMusic icon with System.Drawing, 24-bit RGB with no alpha
+    channel so nothing can show through when a site flattens it onto white.
+    Deterministic: the same seed
     always produces the same image, so a rebuild reproduces the shipped icon exactly.
 
       tools-icon.ps1                       the shipped icon (seed 0)
@@ -23,7 +25,7 @@ $wearSeed  = if ($Seed -eq 0) { 77 }       else { $Seed + 77 }
 Add-Type -AssemblyName System.Drawing
 function Render-Icon([int]$grainSeed, [int]$wearSeed, [string]$outPath) {
 $S = 512
-$bmp = New-Object System.Drawing.Bitmap $S, $S
+$bmp = New-Object System.Drawing.Bitmap $S, $S, ([System.Drawing.Imaging.PixelFormat]::Format24bppRgb)
 $g = [System.Drawing.Graphics]::FromImage($bmp)
 $g.SmoothingMode = 'AntiAlias'
 
@@ -154,7 +156,7 @@ for ($i = 0; $i -lt 1100; $i++) {
 
 $bmp.Save("$outPath.png", [System.Drawing.Imaging.ImageFormat]::Png)
 foreach ($size in @(256, 128)) {
-    $small = New-Object System.Drawing.Bitmap $size, $size
+    $small = New-Object System.Drawing.Bitmap $size, $size, ([System.Drawing.Imaging.PixelFormat]::Format24bppRgb)
     $sg = [System.Drawing.Graphics]::FromImage($small)
     $sg.InterpolationMode = 'HighQualityBicubic'
     $sg.DrawImage($bmp, 0, 0, $size, $size)
