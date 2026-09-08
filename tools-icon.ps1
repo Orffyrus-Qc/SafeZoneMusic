@@ -5,6 +5,7 @@
         .	ools-icon.ps1                      the shipped icon (seed 0)
         .	ools-icon.ps1 -Seed 4              a different wear pattern, same design
         .	ools-icon.ps1 -Seed 4 -Out C:	mp  write somewhere else
+        .	ools-icon.ps1 -Count 8 -Out C:	mp  eight variations to choose between
 
     Only the weathering changes with the seed: scratches, grain and corrosion. The
     boombox, colours and layout are fixed.
@@ -12,13 +13,15 @@
 param(
     [int]$Seed = 0,
     [string]$Out = "W:\SafeZoneMusic",
-    [string]$Name = "icon"
+    [string]$Name = "icon",
+    [int]$Count = 1
 )
 
 $grainSeed = if ($Seed -eq 0) { 20260908 } else { $Seed }
 $wearSeed  = if ($Seed -eq 0) { 77 }       else { $Seed + 77 }
 
 Add-Type -AssemblyName System.Drawing
+function Render-Icon([int]$grainSeed, [int]$wearSeed, [string]$outPath) {
 $S = 512
 $bmp = New-Object System.Drawing.Bitmap $S, $S
 $g = [System.Drawing.Graphics]::FromImage($bmp)
@@ -149,14 +152,31 @@ for ($i = 0; $i -lt 1100; $i++) {
     $g.FillRectangle($b, $x, $y, 2, 2); $b.Dispose()
 }
 
-$bmp.Save("$Out\$Name.png", [System.Drawing.Imaging.ImageFormat]::Png)
+$bmp.Save("$outPath.png", [System.Drawing.Imaging.ImageFormat]::Png)
 foreach ($size in @(256, 128)) {
     $small = New-Object System.Drawing.Bitmap $size, $size
     $sg = [System.Drawing.Graphics]::FromImage($small)
     $sg.InterpolationMode = 'HighQualityBicubic'
     $sg.DrawImage($bmp, 0, 0, $size, $size)
-    $small.Save("$Out\$Name-$size.png", [System.Drawing.Imaging.ImageFormat]::Png)
+    $small.Save("$outPath-$size.png", [System.Drawing.Imaging.ImageFormat]::Png)
     $sg.Dispose(); $small.Dispose()
 }
 $g.Dispose(); $bmp.Dispose()
-Write-Output "rendered $Name at 512, 256 and 128 (grain $grainSeed, wear $wearSeed)"
+}
+
+if (-not (Test-Path $Out)) { New-Item -ItemType Directory -Path $Out | Out-Null }
+
+if ($Count -le 1) {
+    Render-Icon $grainSeed $wearSeed (Join-Path $Out $Name)
+    Write-Output "rendered $Name at 512, 256 and 128 (grain $grainSeed, wear $wearSeed)"
+}
+else {
+    Write-Output "rendering $Count variations into $Out"
+    for ($i = 1; $i -le $Count; $i++) {
+        $s = if ($Seed -eq 0) { $i } else { $Seed + $i }
+        $file = "{0}-{1:d2}" -f $Name, $i
+        Render-Icon $s ($s + 77) (Join-Path $Out $file)
+        Write-Output ("  {0}.png   seed {1}" -f $file, $s)
+    }
+    Write-Output "pick one, then rebuild it on its own with -Seed <n>"
+}
