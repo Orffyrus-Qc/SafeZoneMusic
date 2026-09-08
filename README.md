@@ -1,5 +1,7 @@
 # SafeZoneMusic
 
+**Includes 30 Rust inspired song tracks:** https://suno.com/@orffyrus
+
 Plays your own `.mp3` files at the centre of every Rust safe zone (Outpost, Bandit Camp,
 Fishing Villages, Ranch / Large Barn and any custom zone such as an "Appartement"), and
 publishes the same music as radio stations that players can pick on a Boom Box, a Jukebox
