@@ -1,0 +1,9 @@
+{
+  "NotInZone": "Vous n'etes pas dans une zone sure avec de la musique.",
+  "NowPlaying": "{0} joue : {1}",
+  "ZoneNoTrack": "{0} ne joue aucune piste pour le moment.",
+  "MoveDone": "{0} : boombox deplacee ici, a {1}m de sa position, enterree a {2}m.",
+  "ResetDone": "{0} : placement de la boombox remis en automatique.",
+  "MoveNoZone": "Aucune zone sure avec musique sur cette carte.",
+  "NoPermission": "Vous n'avez pas la permission de faire cela."
+}

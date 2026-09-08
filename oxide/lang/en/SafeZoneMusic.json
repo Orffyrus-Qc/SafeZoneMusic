@@ -1,0 +1,9 @@
+{
+  "NotInZone": "You are not standing in a safe zone that has music.",
+  "NowPlaying": "{0} is playing: {1}",
+  "ZoneNoTrack": "{0} has no track playing right now.",
+  "MoveDone": "{0}: boombox moved here, {1}m from where it was, buried {2}m down.",
+  "ResetDone": "{0}: boombox placement is back to automatic.",
+  "MoveNoZone": "No safe zone with music was found on this map.",
+  "NoPermission": "You do not have permission to do that."
+}

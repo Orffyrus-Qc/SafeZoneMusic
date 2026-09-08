@@ -1,0 +1,12 @@
+Drop .mp3 files in this folder.
+
+Default is the shared playlist: any zone without its own folder plays from here.
+To give one monument its own music, put files in the folder named after it instead
+(Outpost, Bandit Camp, Fishing Village, Ranch, Appartement).
+
+The files must be CONSTANT bitrate. Rust plays a variable bitrate file as static,
+even though it is a perfectly valid mp3 and every desktop player handles it:
+
+    ffmpeg -i input.mp3 -c:a libmp3lame -b:a 128k -ar 44100 -ac 2 output.mp3
+
+The plugin checks every track as it loads and names any file that will not play.

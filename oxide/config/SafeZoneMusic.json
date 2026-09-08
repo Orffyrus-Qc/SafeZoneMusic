@@ -1,0 +1,132 @@
+{
+  "Auto detect safe zones": true,
+  "Add newly detected safe zones to this config": true,
+  "Ignore safe zones that match no monument (travelling vendor, events)": true,
+  "Streaming": {
+    "Enabled (turn off to use external stream URLs only)": true,
+    "Bind address": "0.0.0.0",
+    "Port": 28090,
+    "Public address (leave empty to auto detect)": "127.0.0.1",
+    "Max listeners per station": 150,
+    "Burst on connect (KB)": 48,
+    "Drop tracks Rust cannot play instead of streaming them as static": false,
+    "Shuffle playlists": true,
+    "Log listener connections": false
+  },
+  "Speakers": {
+    "Spawn speakers in safe zones": true,
+    "Source prefab (the boombox that holds the stream)": "assets/prefabs/voiceaudio/boombox/boombox.deployed.static.prefab",
+    "Hide the source boombox under the ground": true,
+    "How deep to bury it (metres) - just enough to sink the model": 1.0,
+    "Move the boombox to dry land when the centre sits over water": true,
+    "Height above ground when it is not hidden": 4.0,
+    "Volume, the game clamps this to 0.2 - 1 (-1 keeps the prefab default)": 1.0,
+    "Spread the sound over the monument with connected speakers": false,
+    "Connected speaker prefab": "assets/prefabs/voiceaudio/hornspeaker/connectedspeaker.deployed.static.prefab",
+    "How far one speaker carries (metres) - drives how many are placed": 40.0,
+    "Speaker height above the ground (negative buries them too)": 2.0,
+    "Maximum speakers per zone": 12,
+    "Keep clear of the monument's own speakers (metres, 0 = ignore them)": 0.0,
+    "Protect speakers from damage, pickup and looting": true,
+    "Re-assert station every X seconds (0 = never)": 15.0
+  },
+  "Radio stations": {
+    "Register zone streams as server radio stations (boombox / jukebox / vehicle radios)": true,
+    "Station name prefix": "SafeZone - ",
+    "Keep the station list that was already set on the server": true,
+    "Extra stations": []
+  },
+  "Zones": [
+    {
+      "Name": "Outpost",
+      "Enabled": true,
+      "Music folder (relative to oxide/data/SafeZoneMusic)": "Outpost",
+      "Monument keywords": [
+        "outpost",
+        "compound"
+      ],
+      "Manual position 'x y z' (leave empty to auto detect)": "",
+      "Use this stream URL instead of the built in server": "",
+      "Spawn a speaker for this zone": true,
+      "Keep clear of the monument's own speakers (metres, -1 = use the Speakers setting)": -1.0,
+      "Boombox position 'x y z' set by /szmusic move (empty = work it out automatically)": "",
+      "Move the rig this far off the centre (metres, 0 = stay in the middle)": 0.0,
+      "Direction to move it, degrees clockwise from north (-1 = away from the monument's own speakers)": -1.0
+    },
+    {
+      "Name": "Bandit Camp",
+      "Enabled": true,
+      "Music folder (relative to oxide/data/SafeZoneMusic)": "Bandit Camp",
+      "Monument keywords": [
+        "bandit"
+      ],
+      "Manual position 'x y z' (leave empty to auto detect)": "",
+      "Use this stream URL instead of the built in server": "",
+      "Spawn a speaker for this zone": true,
+      "Keep clear of the monument's own speakers (metres, -1 = use the Speakers setting)": -1.0,
+      "Boombox position 'x y z' set by /szmusic move (empty = work it out automatically)": "269.21 18.92 -1025.03",
+      "Move the rig this far off the centre (metres, 0 = stay in the middle)": 0.0,
+      "Direction to move it, degrees clockwise from north (-1 = away from the monument's own speakers)": -1.0
+    },
+    {
+      "Name": "Fishing Village",
+      "Enabled": true,
+      "Music folder (relative to oxide/data/SafeZoneMusic)": "Fishing Village",
+      "Monument keywords": [
+        "fishing village"
+      ],
+      "Manual position 'x y z' (leave empty to auto detect)": "",
+      "Use this stream URL instead of the built in server": "",
+      "Spawn a speaker for this zone": true,
+      "Keep clear of the monument's own speakers (metres, -1 = use the Speakers setting)": -1.0,
+      "Boombox position 'x y z' set by /szmusic move (empty = work it out automatically)": "",
+      "Move the rig this far off the centre (metres, 0 = stay in the middle)": 0.0,
+      "Direction to move it, degrees clockwise from north (-1 = away from the monument's own speakers)": -1.0
+    },
+    {
+      "Name": "Ranch",
+      "Enabled": true,
+      "Music folder (relative to oxide/data/SafeZoneMusic)": "Ranch",
+      "Monument keywords": [
+        "ranch",
+        "barn"
+      ],
+      "Manual position 'x y z' (leave empty to auto detect)": "",
+      "Use this stream URL instead of the built in server": "",
+      "Spawn a speaker for this zone": true,
+      "Keep clear of the monument's own speakers (metres, -1 = use the Speakers setting)": -1.0,
+      "Boombox position 'x y z' set by /szmusic move (empty = work it out automatically)": "",
+      "Move the rig this far off the centre (metres, 0 = stay in the middle)": 0.0,
+      "Direction to move it, degrees clockwise from north (-1 = away from the monument's own speakers)": -1.0
+    },
+    {
+      "Name": "Appartement",
+      "Enabled": true,
+      "Music folder (relative to oxide/data/SafeZoneMusic)": "Appartement",
+      "Monument keywords": [
+        "appartement",
+        "apartment"
+      ],
+      "Manual position 'x y z' (leave empty to auto detect)": "",
+      "Use this stream URL instead of the built in server": "",
+      "Spawn a speaker for this zone": true,
+      "Keep clear of the monument's own speakers (metres, -1 = use the Speakers setting)": -1.0,
+      "Boombox position 'x y z' set by /szmusic move (empty = work it out automatically)": "",
+      "Move the rig this far off the centre (metres, 0 = stay in the middle)": 0.0,
+      "Direction to move it, degrees clockwise from north (-1 = away from the monument's own speakers)": -1.0
+    },
+    {
+      "Name": "Ranch",
+      "Enabled": true,
+      "Music folder (relative to oxide/data/SafeZoneMusic)": "Ranch",
+      "Monument keywords": [],
+      "Manual position 'x y z' (leave empty to auto detect)": "869.96 7.13 -790.62",
+      "Use this stream URL instead of the built in server": "",
+      "Spawn a speaker for this zone": true,
+      "Keep clear of the monument's own speakers (metres, -1 = use the Speakers setting)": 0.0,
+      "Boombox position 'x y z' set by /szmusic move (empty = work it out automatically)": "873 8.81 -785.42",
+      "Move the rig this far off the centre (metres, 0 = stay in the middle)": 0.0,
+      "Direction to move it, degrees clockwise from north (-1 = away from the monument's own speakers)": -1.0
+    }
+  ]
+}

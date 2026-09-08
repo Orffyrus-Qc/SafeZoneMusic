@@ -1,0 +1,7 @@
+# Server logs are never part of the plugin
+*.log
+oxide/logs/
+logs/
+
+# Music is the server owner's own; the folders ship empty
+*.mp3
